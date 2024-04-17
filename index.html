@@ -23,7 +23,7 @@
 
 		<p><a id = "proposal pdf" href="15-418 Project Milestone Report.pdf" target="_blank">Milestone Report</a></p>
 
-            <h6>Summary</h6>
+            <h4>Summary</h4>
              <b></b>
 
             <p>
@@ -46,7 +46,7 @@
             </p>
                 <b></b>
 
-            <h6>Deliverables</h6>
+            <h4>Deliverables</h4>
             <p>
                 1. Fast sequential versions of Borukva’s algorithm, using a star contraction and Union-Find approach.
             </p>
@@ -66,12 +66,12 @@
                6. Lock-Free locking on the Union-Find Data structure.
             </p>
 
-            <h6>Nice-to-Have </h6>
+            <h4>Nice-to-Have </h4>
             <b></b>
             <p>1. Experiment with Graph sharding to overcome memory constraints</p>
             <p>2. Implement Boruvka’s on a GPU using a data parallel approach.</p>
 
-            <h6>Progress</h6>
+            <h4>Progress</h4>
 	        <p>We have implemented both sequential versions, one using star contraction, and another using Union-Find. This required research to understand the algorithm and the various implementations. We have also set up the testing infrastructure that we will use for the remainder of the project to ensure correctness. This involved writing a Python script to create connected graphs with the requested number of nodes and edges. We also have written a python script to test whether our output is truly an MST by using Python’s Networkx graph library. </p>
 	        <p>We have also begun assessing our sequential code for parallelism. We have considered parallelizing over for loops for vertices and edges, and the tradeoffs between them. We have decided to implement OpenMP dynamic scheduler for assigning vertices to processors since there is variable time when it comes to finding minimum edge, depending on how many outgoing edges a vertex has. We will also use a static approach as a reference comparison. One challenge is maintaining shared vectors between threads and preventing race conditions. The race conditions can be problematic especially in the contracted implementations because we are directly changing the graph hence we don’t want threads to simultaneously be contracting the same vertex. Furthermore, for the union find, we implemented a shared data structure to keep track of the groups of vertices that have been grouped together. Hence we need to ensure atomicity when accessing regions of this data structure which is where our different locking/ lock free implementations will come into play. </p>
 
